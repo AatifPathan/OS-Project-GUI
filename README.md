@@ -21,5 +21,4 @@ A lightweight and user-friendly **File Manager** with a **Graphical User Interfa
   - `logging` – For logging operations  
 
 
-![Screenshot 2025-03-25 115653](https://github.com/user-attachments/assets/9b6088e6-b930-4236-91c6-28458a648a9f)
-
+![image](https://github.com/user-attachments/assets/0513da99-4091-44d3-921c-adbf00f71fe6)
