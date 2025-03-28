@@ -16,9 +16,15 @@ A lightweight and user-friendly **File Manager** with a **Graphical User Interfa
 - **Programming Language:** Python  
 - **GUI Framework:** Tkinter  
 - **Additional Libraries:**  
-  - `os`, `shutil` – For file operations  
-  - `tkinter.filedialog`, `simpledialog` – For dialogs and user input  
-  - `logging` – For logging operations  
+  -`Python` – Core programming language  
+  -`Tkinter` – GUI toolkit for building the interface  
+  -`OS Module` – Handles file and directory operations  
+  -`Shutil Module` – Used for file copying, moving, and deleting  
+  -`Pillow (PIL)` – Loads and displays icons for files and folders  
+  -`Filedialog (Tkinter)` – Opens folder selection dialogs  
+  -`ttk (Themed Tkinter Widgets)` – Provides enhanced UI elements like "Treeview"
+![image](https://github.com/user-attachments/assets/380370c2-c91c-4062-ac58-fbdc66c7be31)
+
 
 
 ![image](https://github.com/user-attachments/assets/0513da99-4091-44d3-921c-adbf00f71fe6)
