@@ -33,34 +33,90 @@ class FileManager:
         self.button_frame = tk.Frame(self.left_frame)
         self.button_frame.pack()
 
-        button_style = {'bg': 'blue', 'fg': 'white', 'width': 12, 'pady': 5}
+        # Load all icons
+        self.load_all_icons()
 
-        self.open_button = tk.Button(self.button_frame, text="Open Folder", command=self.open_folder, **button_style)
-        self.open_button.pack(pady=2)
+        # Button style configuration
+        button_style = {
+            'bg': '#4a7a8c',  # Blue-gray color
+            'fg': 'white',
+            'compound': tk.LEFT,
+            'padx': 10,
+            'pady': 5,
+            'activebackground': '#3a6a7c',
+            'font': ('Arial', 10)
+        }
 
-        self.back_button = tk.Button(self.button_frame, text="Back", command=self.go_back, **button_style)
-        self.back_button.pack(pady=2)
+        # Create buttons with icons
+        self.open_button = tk.Button(
+            self.button_frame, 
+            text="  Open Folder", 
+            command=self.open_folder, 
+            image=self.open_icon, 
+            **button_style
+        )
+        self.open_button.pack(pady=2, fill=tk.X)
 
-        self.delete_button = tk.Button(self.button_frame, text="Delete", command=self.delete_file, **button_style)
-        self.delete_button.pack(pady=2)
+        self.back_button = tk.Button(
+            self.button_frame, 
+            text="  Back", 
+            command=self.go_back, 
+            image=self.back_icon, 
+            **button_style
+        )
+        self.back_button.pack(pady=2, fill=tk.X)
 
-        self.rename_button = tk.Button(self.button_frame, text="Rename", command=self.rename_file, **button_style)
-        self.rename_button.pack(pady=2)
+        self.delete_button = tk.Button(
+            self.button_frame, 
+            text="  Delete", 
+            command=self.delete_file, 
+            image=self.delete_icon, 
+            **button_style
+        )
+        self.delete_button.pack(pady=2, fill=tk.X)
 
-        self.copy_button = tk.Button(self.button_frame, text="Copy", command=self.copy_file, **button_style)
-        self.copy_button.pack(pady=2)
+        self.rename_button = tk.Button(
+            self.button_frame, 
+            text="  Rename", 
+            command=self.rename_file, 
+            image=self.rename_icon, 
+            **button_style
+        )
+        self.rename_button.pack(pady=2, fill=tk.X)
 
-        self.move_button = tk.Button(self.button_frame, text="Move", command=self.move_file, **button_style)
-        self.move_button.pack(pady=2)
+        self.copy_button = tk.Button(
+            self.button_frame, 
+            text="  Copy", 
+            command=self.copy_file, 
+            image=self.save_icon,  # Using save icon for copy
+            **button_style
+        )
+        self.copy_button.pack(pady=2, fill=tk.X)
 
-        self.search_entry = tk.Entry(self.right_frame, width=30)
-        self.search_entry.pack(pady=5)
+        self.move_button = tk.Button(
+            self.button_frame, 
+            text="  Move", 
+            command=self.move_file, 
+            image=self.move_icon, 
+            **button_style
+        )
+        self.move_button.pack(pady=2, fill=tk.X)
 
-        self.search_button = tk.Button(self.right_frame, text="Search", command=self.search_file, **button_style)
-        self.search_button.pack(pady=5)
+        # Search components
+        search_frame = tk.Frame(self.right_frame)
+        search_frame.pack(pady=5, fill=tk.X)
+        
+        self.search_entry = tk.Entry(search_frame, width=30)
+        self.search_entry.pack(side=tk.LEFT, padx=(0, 5))
 
-        # Load icons
-        self.load_icons()
+        self.search_button = tk.Button(
+            search_frame, 
+            text="  Search", 
+            command=self.search_file, 
+            image=self.search_icon, 
+            **button_style
+        )
+        self.search_button.pack(side=tk.LEFT)
 
         # File list with images using Treeview
         self.file_frame = tk.Frame(self.right_frame)
@@ -73,21 +129,50 @@ class FileManager:
 
         self.populate_file_list()
 
-    def load_icons(self):
-        """Loads icons for folders and files"""
-        script_dir = os.path.dirname(__file__)  # Get script directory
-        icons_dir = os.path.join(script_dir, "icons")  # Look inside "icons" folder
+    def load_all_icons(self):
+        """Load all icons from the icons folder"""
+        script_dir = os.path.dirname(__file__)
+        icons_dir = os.path.join(script_dir, "icons")
 
-        folder_icon_path = os.path.join(icons_dir, "folder.png")
-        file_icon_path = os.path.join(icons_dir, "file.png")
-
+        # Load button icons
         try:
-            self.folder_icon = ImageTk.PhotoImage(Image.open(folder_icon_path).resize((16, 16)))
-            self.file_icon = ImageTk.PhotoImage(Image.open(file_icon_path).resize((16, 16)))
+            # File list icons
+            folder_icon_path = os.path.join(icons_dir, "folder.png")
+            file_icon_path = os.path.join(icons_dir, "file.png")
+            
+            self.list_folder_icon = ImageTk.PhotoImage(Image.open(folder_icon_path).resize((16, 16)))
+            self.list_file_icon = ImageTk.PhotoImage(Image.open(file_icon_path).resize((16, 16)))
+
+            # Button icons
+            back_icon_path = os.path.join(icons_dir, "back.jpg")
+            save_icon_path = os.path.join(icons_dir, "save.png")
+            search_icon_path = os.path.join(icons_dir, "search.png")
+            rename_icon_path = os.path.join(icons_dir, "rename.png")
+            move_icon_path = os.path.join(icons_dir, "move.png")
+            open_icon_path = os.path.join(icons_dir, "open.png")
+            delete_icon_path = os.path.join(icons_dir, "delete.png")
+
+            # Resize button icons to appropriate size (24x24)
+            self.back_icon = ImageTk.PhotoImage(Image.open(back_icon_path).resize((24, 24)))
+            self.save_icon = ImageTk.PhotoImage(Image.open(save_icon_path).resize((24, 24)))
+            self.search_icon = ImageTk.PhotoImage(Image.open(search_icon_path).resize((24, 24)))
+            self.rename_icon = ImageTk.PhotoImage(Image.open(rename_icon_path).resize((24, 24)))
+            self.move_icon = ImageTk.PhotoImage(Image.open(move_icon_path).resize((24, 24)))
+            self.open_icon = ImageTk.PhotoImage(Image.open(open_icon_path).resize((24, 24)))
+            self.delete_icon = ImageTk.PhotoImage(Image.open(delete_icon_path).resize((24, 24)))
+
         except Exception as e:
             print(f"Error loading icons: {e}")
-            self.folder_icon = None
-            self.file_icon = None
+            # Fallback to empty images if icons not found
+            self.list_folder_icon = None
+            self.list_file_icon = None
+            self.back_icon = tk.PhotoImage()
+            self.save_icon = tk.PhotoImage()
+            self.search_icon = tk.PhotoImage()
+            self.rename_icon = tk.PhotoImage()
+            self.move_icon = tk.PhotoImage()
+            self.open_icon = tk.PhotoImage()
+            self.delete_icon = tk.PhotoImage()
 
     def populate_file_list(self):
         """Populates the file list with directories and files"""
@@ -99,9 +184,9 @@ class FileManager:
                 full_path = os.path.join(path, item)
                 
                 if os.path.isdir(full_path):
-                    self.file_list.insert("", tk.END, text=item, image=self.folder_icon if self.folder_icon else "")
+                    self.file_list.insert("", tk.END, text=item, image=self.list_folder_icon if self.list_folder_icon else "")
                 else:
-                    self.file_list.insert("", tk.END, text=item, image=self.file_icon if self.file_icon else "")
+                    self.file_list.insert("", tk.END, text=item, image=self.list_file_icon if self.list_file_icon else "")
 
         except PermissionError:
             messagebox.showerror("Error", "Permission Denied")
@@ -185,9 +270,9 @@ class FileManager:
                     
                     # Add matching item back to the list
                     if os.path.isdir(full_path):
-                        self.file_list.insert("", tk.END, text=item, image=self.folder_icon if self.folder_icon else "")
+                        self.file_list.insert("", tk.END, text=item, image=self.list_folder_icon if self.list_folder_icon else "")
                     else:
-                        self.file_list.insert("", tk.END, text=item, image=self.file_icon if self.file_icon else "")
+                        self.file_list.insert("", tk.END, text=item, image=self.list_file_icon if self.list_file_icon else "")
         
         except PermissionError:
             print("Permission Denied")
