@@ -23,7 +23,6 @@ A lightweight and user-friendly **File Manager** with a **Graphical User Interfa
   -`Pillow (PIL)` – Loads and displays icons for files and folders  
   -`Filedialog (Tkinter)` – Opens folder selection dialogs  
   -`ttk (Themed Tkinter Widgets)` – Provides enhanced UI elements like "Treeview"
-![image](https://github.com/user-attachments/assets/380370c2-c91c-4062-ac58-fbdc66c7be31)
 
 
 
